@@ -25,6 +25,7 @@
 - **cronjob için cd /path/to && php artisan schedule:run >> /dev/null 2>&1   her saat çalışacak şekilde ekleyin**
 
 #### Artık projeniz kullanıma hazır , giriş için mail:admin@admin.com, password:12345678
+[Eventor.postman_collection.json](https://github.com/codarsCoder/eventor/files/15284389/Eventor.postman_collection.json)
 
 ### Proje Kullanımı
 

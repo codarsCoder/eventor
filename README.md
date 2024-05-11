@@ -1,4 +1,9 @@
+## EVENTOR
 
+### Proje Gereksinimleri
+- **[Php version min. 8.0]**
+- **[Composer version min. 2.2 (Aksi halde projedeki vendor klasörü kullanılabilir)]**
+- **[Vehikl]**
 php  >= 8.0 
 composer >= 2.2 
 for passport sodium 

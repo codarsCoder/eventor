@@ -16,12 +16,15 @@
 - **Veritabanını oluşturun**
 - **.env dosyasına oluşturduğunuz veritabanı bilgilerini ekleyin**
 - **.env dosyasına email bilgilerini eleyin**
-- **Aşağıdaki yönergeleri proje dizininde console ile sıra ile çalıştırınız**
+- **Aşağıdaki yönergeleri proje dizininde console ile sıra ile çalıştırın**
 - **composer install**
 - **php artisan key:generate**
 - **php artisan migrate**
-- **php artisan db:seed **
+- **php artisan db:seed**
+- **Bir saat öncesi zamanı gelen eventlerin katılımcılarına hatırlatma maili gitmesi için hostingte cronjob oluşturun**
+- **cronjob için cd /path/to && php artisan schedule:run >> /dev/null 2>&1   her saat çalışacak şekilde ekleyin**
 
+#### Artık projeniz kullanıma hazır , giriş için mail:admin@admin.com, password:12345678
 - ****
 - ****
 - ****

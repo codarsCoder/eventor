@@ -1,4 +1,4 @@
-[Eventor.postman_collection.json](https://github.com/codarsCoder/eventor/files/15284383/Eventor.postman_collection.json)## EVENTOR
+## EVENTOR
 
 ### Proje Özellikleri
 

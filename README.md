@@ -25,10 +25,18 @@
 - **cronjob için cd /path/to && php artisan schedule:run >> /dev/null 2>&1   her saat çalışacak şekilde ekleyin**
 
 #### Artık projeniz kullanıma hazır , giriş için mail:admin@admin.com, password:12345678
-[Eventor.postman_collection.json](https://github.com/codarsCoder/eventor/files/15284389/Eventor.postman_collection.json)
 
 ### Proje Kullanımı
 
 #### Eventor projesinde kullanıcılar etkinlik oluşturablir, başka etkinliklere katılabilir yada etkinlikten çıkabilirler.
 
+
+### Proje Api Kullanımı
+
+#### Eventor un sunduğ api servisleri ile üyelik gerçekleştirip, sisteme giriş yapabilir ve etkinlik oluşturup,güncelleyip silebilirsiniz. Diğer kullanıcıların etkinliklerine katılabilir yada etkinlikten çıkabilirsiniz.
+
+#### Projenin api servislerini Postman'de kullanmak için aşağıdaki json dosyasını postman'a import ederek kullanabilirsiniz.
+
+
+[Eventor.postman_collection.json](https://github.com/codarsCoder/eventor/files/15284389/Eventor.postman_collection.json)
       

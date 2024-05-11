@@ -1,3 +1,7 @@
+
+php  >= 8.0 
+composer >= 2.2 
+for passport sodium 
 composer install
 php artisan key:generate
 php artisan migrate

@@ -20,28 +20,26 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
 
             // 1 saat kalan etkinlikleri bul
-        $events = Event::where('expire_at', '<=', now()->addHour())
-                                ->where('expire_at', '>', now())
-                                ->get();
+            $events = Event::where('expire_at', '<=', now()->addHour())
+                ->where('expire_at', '>', now())
+                ->get();
 
             foreach ($events as $event) {
-                // E-posta gönderme işlemi
 
-               $registrations= Registration::where('event_id',$event->id)->get();
+                $registrations = Registration::where('event_id', $event->id)->get();
 
-                     foreach ($registrations as $registration) {
+                foreach ($registrations as $registration) {
 
-                $user = User::find($registration->user_id);
-              Log::info( $user->id);
-                $subject = 'Event Reminder: ' . $user->name;
-                $message = "Merhaba {$user->name},\n\n";
-                $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde başlayacak erecek.";
+                    $user = User::find($registration->user_id);
+                    $subject = 'Event Reminder: ' . $user->name;
+                    $message = "Merhaba {$user->name},\n\n";
+                    $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde başlayacak erecek.";
 
-                // E-postayı gönder
-                Mail::raw($message, function($mail) use ($user, $subject) {
-                    $mail->to($user->email)->subject($subject);
-                });
-                     }
+                    // E-postayı gönder
+                    Mail::raw($message, function ($mail) use ($user, $subject) {
+                        $mail->to($user->email)->subject($subject);
+                    });
+                }
             }
         })->everyMinute();
     }
@@ -50,7 +48,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

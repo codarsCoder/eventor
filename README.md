@@ -21,7 +21,7 @@
 - **php artisan key:generate**
 - **php artisan migrate**
 - **php artisan db:seed**
-- **Bir saat öncesi zamanı gelen eventlerin katılımcılarına hatırlatma maili gitmesi için hostingte cronjob oluşturun**
+- **Zamanı gelen eventlerin katılımcılarına bir saat öncesinde hatırlatma maili gitmesi için hostingte cronjob oluşturun**
 - **cronjob için cd /path/to && php artisan schedule:run >> /dev/null 2>&1   her saat çalışacak şekilde ekleyin**
 
 #### Artık projeniz kullanıma hazır , giriş için mail:admin@admin.com, password:12345678

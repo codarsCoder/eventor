@@ -25,6 +25,13 @@
 - **cronjob için cd /path/to && php artisan schedule:run >> /dev/null 2>&1   her saat çalışacak şekilde ekleyin**
 
 #### Artık projeniz kullanıma hazır , giriş için mail:admin@admin.com, password:12345678
+
+### Proje Kullanımı
+
+#### Eventor projesinde kullanıcılar etkinlik oluşturablir, başka etkinliklere katılabilir yada etkinlikten çıkabilirler.
+
+
+
 - ****
 - ****
 - ****

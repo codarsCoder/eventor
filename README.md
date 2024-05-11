@@ -1,17 +1,38 @@
 ## EVENTOR
 
+### Proje Özellikleri
+
+- **Laravel 10.1**
+- **Mysql DB**
+
 ### Proje Gereksinimleri
-- **[Php version min. 8.0]**
-- **[Composer version min. 2.2 (Aksi halde projedeki vendor klasörü kullanılabilir)]**
-- **[Vehikl]**
-php  >= 8.0 
-composer >= 2.2 
-for passport sodium 
-composer install
-php artisan key:generate
-php artisan migrate
-php artisan db:seed 
-php artisan serve
+
+- **Php version min. 8.0**
+- **Composer version min. 2.2 (Aksi halde projedeki vendor klasörü kullanılabilir)**
+- **Projede kullanılan passport auth paketi için php yapılandırmasında sodium paketi aktif edilmiş olmalı**
+
+### Proje Kurulumu
+
+- **Veritabanını oluşturun**
+- **.env dosyasına oluşturduğunuz veritabanı bilgilerini ekleyin**
+- **.env dosyasına email bilgilerini eleyin**
+- **Aşağıdaki yönergeleri proje dizininde console ile sıra ile çalıştırınız**
+- **composer install**
+- **php artisan key:generate**
+- **php artisan migrate**
+- **php artisan db:seed **
+
+- ****
+- ****
+- ****
+
+
+
+
+
+
+
+
 
 php artisan schedule:run
 ## Laravel Sponsors

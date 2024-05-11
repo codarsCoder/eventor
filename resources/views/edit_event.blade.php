@@ -13,7 +13,7 @@
                 <div class="alert alert-primary" role="alert">
                     {{ $success }}
                 </div>
-            @endif
+                @endif
                 @if (session('success'))
                     <div class="alert alert-primary" role="alert">
                         {{ session('success') }}
@@ -48,7 +48,8 @@
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-            @endsection
+
         </div>
     </div>
 </div>
+@endsection

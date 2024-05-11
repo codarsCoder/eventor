@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Models\Event;
+use App\Models\User;
+use App\Models\Registration;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Log;
@@ -14,25 +16,32 @@ class Kernel extends ConsoleKernel
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule)
-    { 
+    {
         $schedule->call(function () {
-            Log::info( "message");
+
             // 1 saat kalan etkinlikleri bul
-            $events = Event::where('expire_at', '<=', now()->addHour())
+        $events = Event::where('expire_at', '<=', now()->addHour())
                                 ->where('expire_at', '>', now())
                                 ->get();
 
             foreach ($events as $event) {
                 // E-posta gönderme işlemi
-                $user = $event->user; // Varsayalım ki her event bir kullanıcıya ait
-                $subject = 'Event Reminder: ' . $event->name;
+
+               $registrations= Registration::where('event_id',$event->id)->get();
+
+                     foreach ($registrations as $registration) {
+
+                $user = User::find($registration->user_id);
+              Log::info( $user->id);
+                $subject = 'Event Reminder: ' . $user->name;
                 $message = "Merhaba {$user->name},\n\n";
-                $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde sona erecek.";
+                $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde başlayacak erecek.";
 
                 // E-postayı gönder
                 Mail::raw($message, function($mail) use ($user, $subject) {
                     $mail->to($user->email)->subject($subject);
                 });
+                     }
             }
         })->everyMinute();
     }

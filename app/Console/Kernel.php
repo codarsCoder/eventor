@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
                     $user = User::find($registration->user_id);
                     $subject = 'Event Reminder: ' . $user->name;
                     $message = "Merhaba {$user->name},\n\n";
-                    $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde başlayacak erecek.";
+                    $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde başlayacak.";
 
                     // E-postayı gönder
                     Mail::raw($message, function ($mail) use ($user, $subject) {

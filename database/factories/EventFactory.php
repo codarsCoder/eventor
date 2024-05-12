@@ -12,8 +12,7 @@ class EventFactory extends Factory
 
     public function definition()
     {
-        $baseDate = Carbon::now()->addDays(5); // Mevcut tarihe 5 gün ekleniyor
-
+        $baseDate = Carbon::now()->addDays(rand(1, 5)); // Mevcut tarihe 1 ila 5 gün ekleniyor
         $date = $baseDate->toDateString(); // Tarih olarak alınıyor
         $time = $this->faker->randomElement(['16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00']); // Rastgele bir saat seçiliyor
 

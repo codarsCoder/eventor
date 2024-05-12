@@ -18,7 +18,7 @@ class ExampleFeatureTest extends TestCase
         $userData = [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => $this->faker->password,
+            'password' => $this->faker->password(8, 20), 
         ];
 
         // Kullanıcı kayıt isteği gönderir

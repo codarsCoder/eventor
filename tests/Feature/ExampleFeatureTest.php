@@ -9,6 +9,8 @@ use App\Models\User;
 
 class ExampleFeatureTest extends TestCase
 {
+    use RefreshDatabase, WithFaker; // WithFaker kullanarak rastgele veri oluşturma özelliğini ekledik
+
     /**
      * A basic feature test example.
      *
@@ -16,11 +18,11 @@ class ExampleFeatureTest extends TestCase
      */
     public function test_user_can_register()
     {
-        // Test verisi
+        // Rastgele bir kullanıcı oluştur
         $userData = [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'password' => 'password',
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => $this->faker->password,
         ];
 
         // Kullanıcı kayıt isteği gönderir
@@ -32,8 +34,9 @@ class ExampleFeatureTest extends TestCase
 
         // Kaydedilen kullanıcıyı veritabanında kontrol et
         $this->assertDatabaseHas('users', [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
+            'name' => $userData['name'],
+            'email' => $userData['email'],
         ]);
     }
 }
+

@@ -1,15 +1,11 @@
 <?php
-
-namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
 class ExampleFeatureTest extends TestCase
 {
-    use RefreshDatabase, WithFaker; // WithFaker kullanarak rastgele veri oluşturma özelliğini ekledik
+    use WithFaker; // WithFaker kullanarak rastgele veri oluşturma özelliğini ekledik
 
     /**
      * A basic feature test example.
@@ -39,4 +35,3 @@ class ExampleFeatureTest extends TestCase
         ]);
     }
 }
-

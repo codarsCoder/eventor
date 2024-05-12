@@ -9,11 +9,7 @@
         <div class="row">
             <div class="col-12 col-md-8">
                 <h1 class="mb-5">Edit Event</h1>
-                @if (isset($success))
-                <div class="alert alert-primary" role="alert">
-                    {{ $success }}
-                </div>
-                @endif
+           
                 @if (session('success'))
                     <div class="alert alert-primary" role="alert">
                         {{ session('success') }}

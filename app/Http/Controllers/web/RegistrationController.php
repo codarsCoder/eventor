@@ -1,57 +1,75 @@
 <?php
 
-namespace App\Console;
+namespace App\Http\Controllers\web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Event;
-use App\Models\User;
 use App\Models\Registration;
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class Kernel extends ConsoleKernel
+class RegistrationController extends Controller
 {
-    /**
-     * Define the application's command schedule.
-     */
-    protected function schedule(Schedule $schedule)
+    public function join_event($id)
     {
-        $schedule->call(function () {
 
-            // 1 saat kalan etkinlikleri bul
-            $events = Event::where('expire_at', '<=', now()->addHour())
-                                ->where('expire_at', '>', now())
-                                ->get();
 
-            foreach ($events as $event) {
-                // E-posta gönderme işlemi
+        // Geri dönüş için sayfaya data hazırla
+        $all_events = Event::all();
 
-               $registrations= Registration::where('event_id',$event->id);
+        // Kullanıcının satın aldığı etkinlikleri al
+        $joined_events = Registration::where('user_id', Auth::user()->id)->pluck('event_id')->toArray();
 
-                     foreach ($registrations as $registration) {
-
-                $user = User::find($registration->user_id);
-             Log::info( $user->email);
-                $subject = 'Event Reminder: ' . $user->name;
-                $message = "Merhaba {$user->name},\n\n";
-                $message .= "Etkinlik zamanı yaklaşıyor. {$event->name} etkinliği {$event->expire_at} tarihinde sona erecek.";
-
-                // E-postayı gönder
-                Mail::raw($message, function($mail) use ($user, $subject) {
-                    $mail->to($user->email)->subject($subject);
-                });
-                     }
+        // Her etkinlik için kullanıcının kayıt durumunu kontrol et
+        foreach ($all_events as $event) {
+            // Kullanıcının satın aldığı etkinlikler arasında bu etkinlik var mı kontrol et
+            if (in_array($event->id, $joined_events)) {
+                // Kullanıcı bu etkinliğe kayıtlı, join bilgisini true olarak ayarla
+                $event->joined = true;
+            } else {
+                // Kullanıcı bu etkinliğe kayıtlı değil, join bilgisini false olarak ayarla
+                $event->joined = false;
             }
-        })->everyMinute();
-    }
-    /**
-     * Register the commands for the application.
-     */
-    protected function commands(): void
-    {
-        $this->load(__DIR__.'/Commands');
+        }
 
-        require base_path('routes/console.php');
+        //Etkinlik kayıt
+        $event = Event::find($id);
+        // Belirli bir etkinlik için kullanıcının kaydını kontrol ediyoruz
+        $register = Registration::where('event_id', $id)
+                                 ->where('user_id', Auth::user()->id)
+                                 ->first();
+
+        // Eğer kullanıcı daha önce bu etkinliğe kayıt olmadıysa
+        if (!$register && $event) {
+            // Yeni bir kayıt oluştur
+            $newRegistration = new Registration();
+            $newRegistration->event_id = $id;
+            $newRegistration->user_id = Auth::user()->id;
+            $newRegistration->save();
+
+
+            return redirect()->back()->with('success', 'You have successfully joined for this event.');
+        } else {
+            return redirect()->back()->with('error', 'You have already joined for this event.');
+        }
     }
+
+    // unjoin_event
+    public function unjoin_event($id)
+    {
+        $register = Registration::where('event_id', $id)
+                                 ->where('user_id', Auth::user()->id)->first();
+
+        if ($register) {
+           if($register->delete()){
+               return redirect()->back()->with('success', 'You have successfully unjoined for this event.');
+            } else {
+                return redirect()->back()->with('error', 'You have already unjoined for this event.');
+            }
+        } else{
+            return redirect()->back()->with('error', 'You have already unjoined for this event.');
+        }
+
+    }
+
 }

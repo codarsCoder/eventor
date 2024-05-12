@@ -17,7 +17,7 @@ class EventController extends Controller
     {
         $events = Event::where('user_id', Auth::user()->id)->orderBy('expire_at', 'desc')->get();
         $joined_events = Registration::where('user_id', Auth::user()->id)->with('event')->get();
-        
+
         return view('home', compact('events', 'joined_events'));
     }
 
@@ -78,8 +78,7 @@ class EventController extends Controller
 
         // Veriyi veritabanına kaydetme
         $event->save();
-        $success = 'Event updated successfully.';
-        return view('edit_event', compact('event', 'success'));
+        return redirect()->back()->with('success', 'Event created successfully.');
     }
 
     public function event_detail($id)
@@ -99,9 +98,10 @@ class EventController extends Controller
             $event->delete();
         }
 
-        $events = Event::where('user_id', Auth::user()->id)->get();
-        $joined_events = Registration::where('user_id', Auth::user()->id)->with('event')->get();
-        return view('home', compact('events', 'joined_events'));
+        // $events = Event::where('user_id', Auth::user()->id)->get();
+        // $joined_events = Registration::where('user_id', Auth::user()->id)->with('event')->get();
+        // return view('home', compact('events', 'joined_events'));
+        return redirect()->back()->with('success', 'Event deleted successfully.');
     }
 
     public function all_events() {

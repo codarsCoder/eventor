@@ -34,7 +34,7 @@
 
 ### Proje Api Kullanımı
 
-#### Eventor un sunduğ api servisleri ile yine üyelik gerçekleştirip, sisteme giriş yapabilir ve etkinlik oluşturup,güncelleyip silebilirsiniz. Diğer kullanıcıların etkinliklerine katılabilir yada etkinlikten çıkabilirsiniz.
+#### Eventor un sunduğu api servisleri ile yine üyelik gerçekleştirip, sisteme giriş yapabilir ve etkinlik oluşturup,güncelleyip silebilirsiniz. Diğer kullanıcıların etkinliklerine katılabilir yada etkinlikten çıkabilirsiniz.
 
 #### Projenin api servislerini Postman'de kullanmak için aşağıdaki json dosyasını postman'a import ederek kullanabilirsiniz.
 

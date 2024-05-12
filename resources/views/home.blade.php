@@ -65,7 +65,7 @@ Home
             @foreach ($joined_events as $event)
             <tr>
                 <td>{{ $event->event->name }}</td>
-                <td>{{ Str::limit($event->description, 100) }}</td>
+                <td>{{ Str::limit($event->event->description, 100) }}</td>
                 <td>{{ $event->event->date }}</td>
                 <td>{{ $event->event->time }}</td>
                 <td>

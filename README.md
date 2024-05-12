@@ -19,8 +19,8 @@
 - **Aşağıdaki yönergeleri proje dizininde console ile sıra ile çalıştırın**
 - **composer install**
 - **php artisan key:generate**
-- **php artisan migrate**
-- **php artisan db:seed**
+- **php artisan migrate --seed**
+<!-- - **php artisan db:seed** -->
 - **Zamanı gelen eventlerin katılımcılarına bir saat öncesinde hatırlatma maili gitmesi için hostingte cronjob oluşturun**
 - **cronjob için cd /path/to && php artisan schedule:run >> /dev/null 2>&1   her saat çalışacak şekilde ekleyin**
 - **cronjob hostinger için public_html/artisan schedule:run   her saat çalışacak şekilde ekleyin**
